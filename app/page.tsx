@@ -13,21 +13,31 @@ export default function Page() {
           "p-2",
         )}
       >
-        <header className="pt-1 pb-1">
-          <h1 className="text-balance text-lg font-semibold leading-6">Government Schemes Near You</h1>
-          <p className="text-xs leading-5 opacity-80">Uses your device location to find schemes for your region.</p>
-        </header>
+        <div className="win-surface overflow-hidden">
+          <div className={cn("win-toolbar", "h-10 flex items-center gap-2 px-3")}>
+            <span className="inline-block h-2.5 w-2.5 rounded-full bg-primary" aria-hidden />
+            <span className="text-sm font-medium text-pretty">Government Schemes Near You</span>
+          </div>
 
-        <Suspense fallback={<div className="text-sm">Loading…</div>}>
-          <LocationSchemes />
-        </Suspense>
+          <div className="p-2">
+            <header className="pt-1 pb-1">
+              <p className="text-xs leading-5 opacity-80 text-pretty">
+                Uses your device location to find schemes for your region.
+              </p>
+            </header>
 
-        <footer className="mt-auto pt-2 pb-2">
-          <p className="text-[11px] leading-5 opacity-70">
-            Data fetched from myScheme (Government of India). Accuracy may vary based on device location and source site
-            availability.
-          </p>
-        </footer>
+            <Suspense fallback={<div className="text-sm">Loading…</div>}>
+              <LocationSchemes />
+            </Suspense>
+
+            <footer className="mt-2 pt-2 border-t">
+              <p className="text-[11px] leading-5 opacity-70">
+                Data fetched from myScheme (Government of India). Accuracy may vary based on device location and source
+                site availability.
+              </p>
+            </footer>
+          </div>
+        </div>
       </div>
     </main>
   )

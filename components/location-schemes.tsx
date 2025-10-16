@@ -101,7 +101,7 @@ export default function LocationSchemes() {
 
   return (
     <section aria-labelledby="schemes-title" className={cn("flex flex-col gap-2")}>
-      <div className="rounded-md border p-2">
+      <div className="win-surface p-2">
         <div className="flex items-center justify-between">
           <h2 id="schemes-title" className="text-sm font-medium">
             Your location
@@ -109,7 +109,9 @@ export default function LocationSchemes() {
           <button
             type="button"
             onClick={onRetry}
-            className={cn("px-2 py-1 rounded-sm border", "text-xs", "active:scale-95 transition")}
+            className={cn(
+              "win-btn px-3 py-2 text-xs bg-primary text-primary-foreground active:scale-95 transition touch-lg",
+            )}
             aria-label="Retry location"
           >
             Retry
@@ -137,12 +139,12 @@ export default function LocationSchemes() {
         )}
       </div>
 
-      <div className="rounded-md border p-2">
+      <div className="win-surface p-2">
         <div className="flex items-center justify-between mb-1">
           <h3 className="text-sm font-medium">Schemes for your region</h3>
           {stateParam ? (
             <a
-              className="text-xs underline focus:outline-none"
+              className="text-xs underline hover:opacity-90 focus:outline-none"
               href={searchLink || `https://www.myscheme.gov.in/`}
               target="_blank"
               rel="noopener noreferrer"
@@ -165,7 +167,7 @@ export default function LocationSchemes() {
         {schemes?.items?.length ? (
           <ul className="mt-1 grid grid-cols-1 gap-2">
             {schemes.items.slice(0, 50).map((item) => (
-              <li key={item.href} className="rounded-sm border p-2">
+              <li key={item.href} className="rounded-lg border p-2 hover:bg-muted/40 transition">
                 <a
                   className="block"
                   href={item.href.startsWith("http") ? item.href : `https://www.myscheme.gov.in${item.href}`}
@@ -181,9 +183,7 @@ export default function LocationSchemes() {
             ))}
           </ul>
         ) : stateParam && !loadingSchemes && !schemesErr ? (
-          <p className="text-xs leading-5">
-            No schemes found via scraping right now. You can browse directly on myScheme above.
-          </p>
+          <p className="text-xs leading-5">No schemes found right now. You can browse directly on myScheme above.</p>
         ) : null}
       </div>
     </section>
